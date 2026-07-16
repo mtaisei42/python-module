@@ -2,7 +2,7 @@ import typing
 import abc
 
 
-    
+
 class DataProcessor(abc.ABC):
     def __init__(self):
         self._storage: list[tuple[int, str]] = []
@@ -17,12 +17,13 @@ class DataProcessor(abc.ABC):
 
     def output(self) -> tuple[int,str]:
         return self._storage.pop(0)
-    
+
     def get_total(self) -> int:
         return self._rank_count
-    
+
     def get_remaining(self) -> int:
         return (len(self._storage))
+
 
 class NumericProcessor(DataProcessor):
 
@@ -45,6 +46,7 @@ class NumericProcessor(DataProcessor):
             for value in data:
                 self._storage.append((self._rank_count, str(value)))
                 self._rank_count += 1
+
 
 class TextProcessor(DataProcessor):
 
@@ -107,7 +109,7 @@ class DataStream:
 
     def register_processor(self, proc: DataProcessor) -> None:
         self.processors.append(proc)
-    
+
     def process_stream(self, stream: list[typing.Any]) -> None:
         for element in stream:
             for proc in self.processors:
@@ -122,7 +124,7 @@ class DataStream:
         if not len(self.processors):
             print("No processor found, no data")
             return
-        
+
         for proc in self.processors:
             print(f"{proc.__class__.__name__}:"
                   f"total {proc.get_total()} item processed, "
@@ -140,9 +142,9 @@ def main() -> None:
     stream.print_processors_stats()
     print("\nRegistering Numeric Processor\n")
     stream.register_processor(numeric)
-    data = ['Hello world', [3.14, -1, 2.71], 
-            [{'log_level': 'WARNING','log_message': 'Telnet access! Use ssh instead'}, 
-             {'log_level': 'INFO','log_message': 'User wil isconnected'}], 
+    data = ['Hello world', [3.14, -1, 2.71],
+            [{'log_level': 'WARNING','log_message': 'Telnet access! Use ssh instead'},
+             {'log_level': 'INFO','log_message': 'User wil isconnected'}],
              42, ['Hi','five']]
     print(f"Send first batch of data on stream: {data}")
     stream.process_stream(data)
@@ -165,5 +167,3 @@ def main() -> None:
 
 
 main()
-    
-    
