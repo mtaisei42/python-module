@@ -1,4 +1,4 @@
-import alchemy.grimoire
+import alchemy.grimoire.light_spellbook
 
 
 def main() -> None:
