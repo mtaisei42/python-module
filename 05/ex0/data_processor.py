@@ -17,6 +17,7 @@ class DataProcessor(abc.ABC):
     def output(self) -> tuple[int,str]:
         return self._storage.pop(0)
 
+
 class NumericProcessor(DataProcessor):
 
     def validate(self, data :typing.Any) -> bool:
@@ -39,6 +40,7 @@ class NumericProcessor(DataProcessor):
                 self._storage.append((self._rank_count, str(value)))
                 self._rank_count += 1
 
+
 class TextProcessor(DataProcessor):
 
     def validate(self, data :typing.Any) -> bool:
@@ -60,6 +62,7 @@ class TextProcessor(DataProcessor):
             for value in data:
                 self._storage.append((self._rank_count, value))
                 self._rank_count += 1
+
 
 class LogProcessor(DataProcessor):
 

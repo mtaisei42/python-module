@@ -4,9 +4,11 @@ class GardenError(Exception):
     def __init__(self, message="A garden error occurred"):
         super().__init__(message)
 
+
 class PlantError(GardenError):
     def __init__(self, message="Unknown plant error occurred"):
         super().__init__(message)
+
 
 def water_plant(plant_name):
     cap_name = plant_name.capitalize()
@@ -14,6 +16,7 @@ def water_plant(plant_name):
         print(f"Watering {cap_name} : [OK]")
     else:
         raise PlantError(f"Invalid plant name to water: '{plant_name}'")
+
 
 def test_watering_system():
     print("=== Garden Watering System ===\n")

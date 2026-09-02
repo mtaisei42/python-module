@@ -20,6 +20,7 @@ class Plant:
                 f"{self.age_colls} age "
                 f"{self.show_colls} show"
             )
+            
     def __init__(self, name: str, height: float, Age: int):
         self.name = name
         self.height = height

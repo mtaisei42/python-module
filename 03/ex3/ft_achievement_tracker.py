@@ -18,10 +18,12 @@ def main() -> None:
     Achievements = []
     for _ in range(4):
         Achievements.append(gen_player_achievements())
+
     Alice = Achievements[0]
     Bob = Achievements[1]
     Charlie = Achievements[2]
     Dylan = Achievements[3]
+
     print("=== Achievement Tracker System ===\n")
     print(f"Player Alice: {Alice}")
     print(f"Player Bob: {Bob}")

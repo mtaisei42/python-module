@@ -7,6 +7,8 @@ def input_temperature(temp_str):
     elif temp_int < 0:
         raise ValueError("-50°C is too cold for plants (min 0°C)")
     print(f"Temperature is now {temp_int}°C")
+
+
 def test_temperature():
     print(f"=== Garden Temperature Checker ===\n")
 

@@ -6,6 +6,7 @@ class plant:
     def show(self):
         print(f"{self.name}: {self.height}cm, {self.age} days old")
 
+
 def ft_garden_data():
     rose = plant("Rose", 25, 30)
     sunflower = plant("Sunflower", 80, 45)

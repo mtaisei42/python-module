@@ -4,13 +4,13 @@ def garden_operations(operation_number):
     str = "hello"
     nbr = 100
     if operation_number == 0:
-        result = int(str)
+        str = int(str)
     elif operation_number == 1:
-        result = nbr / 0
+        nbr = nbr / 0
     elif operation_number == 2:
         open("test.txt", "r")
     elif operation_number == 3:
-        result = str + nbr
+        str = str + nbr
 
 def test_error_types():
     print("=== Garden Error Types Demo ===")

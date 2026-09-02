@@ -1,10 +1,10 @@
-import alchemy.grimoire.light_spellbook
+from alchemy import grimoire
 
 
 def main() -> None:
     print("=== Kaboom 0 ===")
     print("Using grimoire module directly")
-    result = alchemy.grimoire.light_spellbook.light_spell_record("Fantasy", "Earth, wind and fire")
+    result = grimoire.light_spell_record("Fantasy", "Earth, wind and fire")
     print(f"esting record light spell: {result}")
 
 
