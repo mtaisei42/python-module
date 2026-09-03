@@ -1,55 +1,42 @@
-import abc
-import typing
+import ex0
+
+def battle(creature1, creature2):
+
+    creature1.describe()
+    print(" vs.")
+    creature2.describe()
+
+    print(" fight!")
+    creature1.attack()
+    creature2.attack()
 
 
-class Creature(abc.ABC):
+def main() -> None:
 
-    def __init__(self, name, type):
-        self.name = name
-        self.type = type
+    flame_fact = ex0.FlameFactory()
+    aqua_fact = ex0.AquaFactory()
 
-    @abc.abstractmethod
-    def attack(self):
-        pass
+    Flameling = flame_fact.create_base()
+    Pyrodon = flame_fact.create_evolved()
+    Aquabub = aqua_fact.create_base()
+    Torragon = aqua_fact.create_evolved()
 
+    print("Testing factory")
+    Flameling.describe()
+    Flameling.attack()
+    Pyrodon.describe()
+    Pyrodon.attack()
 
-    def describe(self):
-        print(f"{self.name} is a {self.type} type Creature")
+    print("\nTesting factory\n")
+    Aquabub.describe()
+    Aquabub.attack()
+    Torragon.describe()
+    Torragon.attack()
 
-
-class CreatureFactory(abc.ABC):
-
-    @abc.abstractmethod
-    def create_base(self):
-        pass
-
-    @abc.abstractmethod
-    def create_evolved(self):
-        pass
-
-class Flameling(Creature):
-
-    def attack(self):
-        print(f"{self.name} uses {self.type}")
+    print("Testing battle")
+    battle(Flameling,   Aquabub)
 
 
 
 
-class Pyrodon(Creature):
-
-    def attack(self):
-        print(f"{self.name} uses {self.type}")
-
-
-class Aquabub(Creature):
-
-    def attack(self):
-        print(f"{self.name} uses {self.type}")
-
-class TTorragon(Creature):
-
-    def attack(self):
-        print(f"{self.name} uses {self.type}")
-
-
-class
+main()
