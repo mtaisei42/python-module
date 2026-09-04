@@ -7,24 +7,20 @@ def battle(creature_strategys: list):
     total = len(creature_strategys)
     print(f"{len(creature_strategys)} opponents involved")
 
-    for i in range(total - 1):
-        print("\n* Battle *")
-        creature_strategys[i][0].describe()
-        print(" .vs")
-        for j in range(total - 1):
-            creature_strategys[j+1][0].describe()
-            print(" now fight!")
+    for i in range(total):
+        for j in range(i + 1, total):
+            creature1, strategy1 = creature_strategys[i]
+            creature2, strategy2 = creature_strategys[j]
+            print("\n* Battle *")
+            creature1.describe()
+            print(" .vs")
+            creature2.describe()
+            print(" .now fight")
             try:
-                creature_strategys[i][1].act(creature_strategys[i][0])
+                strategy1.act(creature1)
+                strategy2.act(creature2)
             except InvalidStrategyError as e:
                 print(e)
-                return
-            try:
-                creature_strategys[j+1][1].act(creature_strategys[j+1][0])
-            except InvalidStrategyError as e:
-                print(e)
-                return
-    
 
 def main() -> None:
 
