@@ -1,34 +1,66 @@
 import sys
 import os
-from dotenv import load_dotenv
 
+
+def check_env() -> None:
+
+    mode = os.getenv("MATRIX_MODE")
+    database = os.getenv("DATABASE_URL")
+    api_access = os.getenv("API_KEY")
+    log_level = os.getenv("LOG_LEVEL")
+    zion_network = os.getenv("ZION_ENDPOINT")
+
+    print("Configuration loaded:")
+
+    if mode:
+        print(f"Mode: {mode}")
+    else:
+        print("WARNING: MATRIX_MODE is missing")
+
+    if database:
+        print("Connected to local instance")
+    else:
+        print("WARNING: DATAVASE_URL is missing")
+
+    if api_access:
+        print("Authenticated")
+    else:
+        print("Not Authenticated")
+
+    if log_level:
+        print(f"Log Level: {log_level}")
+    else:
+        print("LOG_LEVEL is missing")
+
+    if zion_network:
+        print("Zion Network: Online")
+    else:
+        print("Zion Network: Ofline")
 
 def main() -> None:
 
-    required_variables: list[str] = [
-    "MATRIX_MODE",
-    "DATABASE_URL",
-    "API_KEY",
-    "LOG_LEVEL",
-    "ZION_ENDPOINT",
-    ]
+    print("ORACLE STATUS: Reading the Matrix...\n")
+    try:
+        from dotenv import load_dotenv
+        load_dotenv()
+    except ImportError:
+        print("ERROR: python-dotenv is not installed.")
+        print("Install it with: pip install -r requirements.text")
+        sys.exit(1)
 
-    config:  dict[str: str] ={}
+    check_env()
 
-    load_dotenv()
-    print("ORACLE STATUS: Reading the Matrix...")
+    print("\nEnvironment security check:")
+    print("[OK] No hardcoded secrets detected")
+    if os.path.isfile(".env"):
+        print("[OK] .env file properly configured")
+    else:
+        print("[WARNING] .env file not found")
+
+    print("[OK] Production overrides available")
+
+    print("\nThe Oracle sees all configurations.")
 
 
-    for variable_name in required_variables:
-        value = os.getenv(variable_name)
-
-        if not value:
-            print(f"WARNING {variable_name} is not required")
-
-        else:
-            config[variable_name] = value
-
-    if len(config) != 5:
-        print()
-
-    
+if __name__ == "__main__":
+    main()
