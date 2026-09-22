@@ -26,4 +26,24 @@ class SpaceMission(BaseModel):
     mission_name:str = Field(min_length=3, max_length=100)
     destination:str = Field(min_length=3, max_length=50)
     launch_date: datetime
-    duration
+    durarion_days: int = Field(ge=1, le=3650)
+    crew: list[CrewMember] = Field(min_length=1, max_length=12)
+    mission_status:str = Field(default="planned")
+    budget_millions:float = Field(ge=1.0, le=100000.0)
+
+    @model_validator(mode="after")
+    def check(self):
+
+        experiences = [name for name in self.crew if name.years_experience >= 5]
+
+        if not self.mission_id.startswith("M"):
+            raise ValidationError()
+
+        elif not any(Rank.Commander == member.rank or Rank.Capatain == member.rank for member in self.crew):
+            raise ValidationError()
+
+        elif self.durarion_days > 365 and len(self.crew /2) > len(experiences):
+            raise ValidationError()
+
+
+        
