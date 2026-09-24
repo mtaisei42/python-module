@@ -29,10 +29,10 @@ class AlienContact(BaseModel):
             raise ValidationError("Contact ID must start with AC")
 
         elif ContactType.Telepathic == self.contact_type and self.witness_count < 3:
-            raise ValueError("Telepathic contact requires at least 3 witnesses")
+            raise ValidationError("Telepathic contact requires at least 3 witnesses")
 
         elif self.signal_strength > 7.0 and not self.message_receive:
-            raise ValueError("Signals stronger than 7.0 must include a received message")
+            raise ValidationError("Signals stronger than 7.0 must include a received message")
 
         return self
 
