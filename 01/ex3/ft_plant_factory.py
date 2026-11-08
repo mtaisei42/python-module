@@ -1,22 +1,29 @@
-class plant:
-    def __init__(self, name :str, height: float, age: int):
+class Plant:
+    def __init__(self, name: str, height: float, age: int) -> None:
         self.name = name
         self.height = height
         self.age = age
-    def show(self):
-        print(f"Created: {self.name}: {self.height: .1f}cm, {self.age} days old")
 
-def ft_plant_factory():
-    Rose = plant("Rose", 25, 30)
-    Oak = plant("Oak", 200, 365)
-    Cactus = plant("Cactus", 5, 90)
-    Sunflower = plant("Sunflower", 80, 45)
-    Fern = plant("Fern", 15, 120)
+    def show(self) -> None:
+        print(
+            f"Created: {self.name}: "
+            f"{self.height:.1f}cm, {self.age} days old"
+        )
+
+
+def ft_plant_factory() -> None:
+    rose = Plant("Rose", 25, 30)
+    oak = Plant("Oak", 200, 365)
+    cactus = Plant("Cactus", 5, 90)
+    sunflower = Plant("Sunflower", 80, 45)
+    fern = Plant("Fern", 15, 120)
     print("=== Plant Factory Output ===")
-    Rose.show()
-    Oak.show()
-    Cactus.show()
-    Sunflower.show()
-    Fern.show()
+    rose.show()
+    oak.show()
+    cactus.show()
+    sunflower.show()
+    fern.show()
 
-ft_plant_factory()
+
+if __name__ == "__main__":
+    ft_plant_factory()
