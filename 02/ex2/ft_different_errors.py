@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
 
-def garden_operations(operation_number):
-    str = "hello"
+def garden_operations(operation_number: int) -> None:
+    text = "hello"
     nbr = 100
     if operation_number == 0:
-        str = int(str)
+        int(text)
     elif operation_number == 1:
-        nbr = nbr / 0
+        nbr / 0
     elif operation_number == 2:
-        open("test.txt", "r")
+        open("/non/existent/file", "r")
     elif operation_number == 3:
-        str = str + nbr
+        text + nbr
 
-def test_error_types():
+
+def test_error_types() -> None:
     print("=== Garden Error Types Demo ===")
-    for i in range(5):
+    for i in (0, 1, 2, 3, 4):
         print(f"Testing operation {i}...")
         try:
             garden_operations(i)
