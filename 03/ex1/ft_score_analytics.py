@@ -1,7 +1,7 @@
 import sys
 
 
-def main():
+def main() -> None:
 
     print("=== Player Score Analytics ===")
 
@@ -15,20 +15,23 @@ def main():
         except ValueError:
             invalid_scores.append(arg)
 
-    if  len(valid_scores):
-        for inval in invalid_scores:
-            print(f"Invalid parameter: {inval}")
+    for inval in invalid_scores:
+        print(f"Invalid parameter:'{inval}'")
+
+    if not valid_scores:
         print(f"No scores provided. Usage: python3 "
               f"{file_name} <score1> <score2> ...")
         return
 
     total = len(valid_scores)
     print(f"Scores processed: {valid_scores}")
-    print(f"Total players :{total}")
+    print(f"Total players: {total}")
+    print(f"Total score: {sum(valid_scores)}")
     print(f"Average score: {sum(valid_scores) / total}")
     print(f"High score: {max(valid_scores)}")
     print(f"Low score: {min(valid_scores)}")
     print(f"Score range: {max(valid_scores) - min(valid_scores)}")
+
 
 if __name__ == "__main__":
     main()

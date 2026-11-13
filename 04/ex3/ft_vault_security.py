@@ -1,19 +1,19 @@
 def secure_archive(
-        file_name: str, option: str, content: str = ""
+        file_name: str, option: str = "read", content: str = ""
 ) -> tuple[bool, str]:
     try:
         if option == "read":
             with open(file_name, "r") as f:
                 data = f.read()
-                return(True, data)
+                return True, data
         elif option == "write":
             with open(file_name, "w") as f:
                 f.write(content)
-                return(True, "Content successfully written to file")
+                return True, "Content successfully written to file"
         else:
-            return(False, "Invalid option")
-    except OSError as e:
-        return(False, str(e))
+            return False, "Invalid option"
+    except (OSError, UnicodeError) as e:
+        return False, str(e)
 
 
 def main() -> None:
@@ -33,6 +33,11 @@ def main() -> None:
     print()
 
     print("Using 'secure_archive' to write previous content to a new file:")
-    print(secure_archive("new_archive.txt", "write", result[1]))
+    if result[0]:
+        print(secure_archive("new_archive.txt", "write", result[1]))
+    else:
+        print("Data not saved because the source could not be read.")
 
-main()
+
+if __name__ == "__main__":
+    main()

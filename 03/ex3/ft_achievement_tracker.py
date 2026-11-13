@@ -1,11 +1,12 @@
 import random
 
 
-All_achiev = ["Strategist", "Speed Runner", "Unstoppable",
-                "Untouchable", "Boss Slayer",
-                "Crafting Genius", "World Savior", "Survivor", "Master Explorer",
-                "Treasure Hunter","Hidden Path Finder", "First Steps",
-                "Collector Supreme", "Sharp Mind"]
+All_achiev = [
+    "Strategist", "Speed Runner", "Unstoppable", "Untouchable", "Boss Slayer",
+    "Crafting Genius", "World Savior", "Survivor", "Master Explorer",
+    "Treasure Hunter", "Hidden Path Finder", "First Steps",
+    "Collector Supreme", "Sharp Mind",
+]
 
 
 def gen_player_achievements() -> set[str]:
@@ -30,7 +31,7 @@ def main() -> None:
     print(f"Player Charlie: {Charlie}")
     print(f"Player Dylan: {Dylan}")
 
-    All_distinct = set.union(Alice,Bob, Charlie, Dylan)
+    All_distinct = set.union(Alice, Bob, Charlie, Dylan)
     print(f"\nAll distinct achievements: {All_distinct}")
     Comon = set.intersection(Alice, Bob, Charlie, Dylan)
     print(f"\nCommon achievements: {Comon}\n")
@@ -52,6 +53,7 @@ def main() -> None:
     print(f"Bob is missing: {miss_Bob}")
     print(f"Charlie is missing: {miss_Charlie}")
     print(f"Dylan is missing: {miss_Dylan}")
+
 
 if __name__ == "__main__":
     main()

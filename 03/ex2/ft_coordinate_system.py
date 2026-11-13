@@ -23,7 +23,11 @@ def get_player_pos() -> tuple[float, float, float]:
 def main() -> None:
     print("=== Game Coordinate System ===\n")
     print("Get a first set of coordinates")
-    coord_tuple1 = get_player_pos()
+    try:
+        coord_tuple1 = get_player_pos()
+    except EOFError:
+        print("\nInput ended.")
+        return
     print(f"Got a first tuple: {coord_tuple1}")
     x1 = coord_tuple1[0]
     y1 = coord_tuple1[1]
@@ -33,13 +37,20 @@ def main() -> None:
     print(f"Distance to center: {round(center_dist, 4)}")
 
     print("\nGet a second set of coordinates")
-    coord_tuple2 = get_player_pos()
+    try:
+        coord_tuple2 = get_player_pos()
+    except EOFError:
+        print("\nInput ended.")
+        return
     x2 = coord_tuple2[0]
     y2 = coord_tuple2[1]
     z2 = coord_tuple2[2]
-    dist_between_p1_p2 = math.sqrt((x2 - x1)**2 + (y2 - y1)**2 + (z2 - z1))
+    dist_between_p1_p2 = math.sqrt(
+        (x2 - x1)**2 + (y2 - y1)**2 + (z2 - z1)**2
+    )
     print(f"Distance between the 2 sets of coordinates: "
-          f" {round(dist_between_p1_p2, 4)}")
+          f"{round(dist_between_p1_p2, 4)}")
+
 
 if __name__ == "__main__":
     main()
