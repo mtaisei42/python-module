@@ -5,7 +5,7 @@ def secure_archive(
         if option == "read":
             with open(file_name, "r") as f:
                 data = f.read()
-                return True, data
+
         elif option == "write":
             with open(file_name, "w") as f:
                 f.write(content)
@@ -14,6 +14,11 @@ def secure_archive(
             return False, "Invalid option"
     except (OSError, UnicodeError) as e:
         return False, str(e)
+
+    print(f.closed)
+    return True, data
+
+    
 
 
 def main() -> None:
