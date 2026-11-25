@@ -53,12 +53,24 @@ def main() -> None:
 
     print("\nEnvironment security check:")
     print("[OK] No hardcoded secrets detected")
-    if os.path.isfile("ex1/.env"):
-        print("[OK] .env file properly configured")
-    elif os.path.isfile(".env"):
-        print("[OK] .env file properly configured")
+    if os.path.isfile("ex1/.gitignore"):
+        gitignore_path = "ex1/.gitignore"
+    elif os.path.isfile(".gitignore"):
+        gitignore_path = ".gitignore"
     else:
-        print("[WARNING] .env file not found")
+        print("[WARNING] .gitignore file not found")
+        return
+
+    try:
+        with open(gitignore_path, encoding="utf-8") as f:
+            env_listed = any(line.strip() == ".env" for line in f)
+    except OSError:
+        print("[WARNING] Could not read .gitignore")
+    else:
+        if env_listed:
+            print("[OK] .env file properly ignored by git")
+        else:
+            print("[WARNING] .env is not listed in .gitignore")
 
     print("[OK] Production overrides available")
 
