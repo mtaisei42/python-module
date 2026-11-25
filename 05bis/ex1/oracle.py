@@ -35,7 +35,7 @@ def check_env() -> None:
     if zion_network:
         print("Zion Network: Online")
     else:
-        print("Zion Network: Ofline")
+        print("Zion Network: Offline")
 
 
 def main() -> None:

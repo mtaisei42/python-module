@@ -4,8 +4,9 @@ version = "0.1.0"
 description = "Matrix data analysis project"
 requires-python = ">=3.10,<4.0"
 dependencies = [
-    "numpy",
-    "pandas",
+    "numpy==2.2.6; python_version < '3.11'",
+    "numpy==2.3.5; python_version >= '3.11'",
+    "pandas==2.3.3",
 ]
 
 [tool.poetry]
